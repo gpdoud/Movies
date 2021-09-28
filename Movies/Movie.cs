@@ -8,6 +8,8 @@ namespace Movies
 {
 	class Movie
 	{
+		private static int NextId { get; set; } = 1;
+
 		public int Id { get; set; }
 		public string Title { get; set; }
 		public string Genre { get; set; }
@@ -16,11 +18,41 @@ namespace Movies
 		public int RuntimeInMinutes { get; set; }
 		public string Director { get; set; }
 
+		public string Print()
+		{
+			return $"{Id} | {Title} | {Genre} | {NextId} ";
+		}
+
+		public int GetReleased()
+		{
+			return this.Released;
+		}
+
+		public static int CalcRuntimeInMinutes(int Hours, int Minutes)
+		{
+			return Hours * 60 + Minutes;
+		}
+
+		public string GetRating()
+		{
+			return this.Rating;
+		}
+
+		public void SetRating(string rating)
+		{
+			Rating = rating;
+		}
+
+		public void SetRuntimeInMinutes(int Hours, int Minutes)
+		{
+			this.RuntimeInMinutes = Hours * 60 + Minutes;
+		}
+
 		public Movie() { }
-		public Movie(int id, string title, string genre, string rating,
+		public Movie(string title, string genre, string rating,
 					int released, int runtimeInMinutes, string director)
 		{
-			this.Id = id;
+			this.Id = NextId++;
 			this.Title = title;
 			this.Genre = genre;
 			this.Rating = rating;
